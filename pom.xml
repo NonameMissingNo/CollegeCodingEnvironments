@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.0</version>
+		<version>3.0.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
@@ -15,17 +15,41 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
+
+		<spring-boot.version>3.0.5</spring-boot.version>
+		<webjars.version>5.1.3</webjars.version>
+		<jquery.version>3.6.0</jquery.version>
+		<webjars-locator.version>0.42</webjars-locator.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>${webjars.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator</artifactId>
+			<version>${webjars-locator.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>${jquery.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<version>${spring-boot.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -35,7 +59,56 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.2.1</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>10.9.3</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<consoleOutput>true</consoleOutput>
+					<configLocation>google_checks.xml</configLocation>
+					<violationSeverity>warning</violationSeverity>
+					<violationIgnore>
+						Indentation,
+						CustomImportOrder,
+						DesignForExtension,
+						HiddenField,
+						HideUtilityClassConstructor,
+						JavadocPackage,
+						JavadocVariable
+					</violationIgnore>
+					<!-- Exclude model classes and the entry point class. -->
+					<excludes>
+						**/model/**/*,
+						**/MusicCatalogApplication.java
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>check-google-checks</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/NonameMissingNo/CollegeCodingEnvironments</url>
+		</repository>
+	</distributionManagement>
 
 </project>
