@@ -17,10 +17,10 @@ public class BookRepository implements Repository<Book, Long> {
     private static final Map<Long, Book> STORAGE = new HashMap<>();
 
     @Override
-    public Book save(Book song) {
+    public Book save(Book book) {
         Long id = STORAGE.size() + 1L;
-        song.setId(id);
-        STORAGE.put(id, song);
+        book.setId(id);
+        STORAGE.put(id, book);
         return STORAGE.get(id);
     }
 
@@ -35,9 +35,9 @@ public class BookRepository implements Repository<Book, Long> {
     }
 
     @Override
-    public Book update(Book song) {
-        Long id = song.getId();
-        STORAGE.put(id, song);
+    public Book update(Book book) {
+        Long id = book.getId();
+        STORAGE.put(id, book);
         return STORAGE.get(id);
     }
 
