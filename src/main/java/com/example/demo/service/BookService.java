@@ -1,9 +1,10 @@
 package com.example.demo.service;
 
+import com.example.demo.data.model.Book;
+
 import java.util.List;
 import java.util.Optional;
 
-import com.example.demo.data.model.Book;
 
 /**
  * A service for managing books in the library.
@@ -34,10 +35,10 @@ public interface BookService {
     List<Book> retrieveAllBooks();
 
     /**
-     * Updates an existing song.
+     * Updates an existing book.
      *
      * @param book the book to update
-     * @return the updated song
+     * @return the updated book
      */
     Book updateBook(Book book);
 
@@ -47,4 +48,6 @@ public interface BookService {
      * @param id the id of the book to delete
      */
     void deleteBookById(Long id);
+
+    Optional<Book> rateBookById(Long id);
 }

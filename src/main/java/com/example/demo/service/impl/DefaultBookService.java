@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.data.model.Book;
+import com.example.demo.data.repository.Repository;
 import com.example.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.data.repository.Repository;
 
 /**
  * Default implementation of {@link BookService}.
@@ -46,5 +46,10 @@ public class DefaultBookService implements BookService {
     @Override
     public void deleteBookById(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Book> rateBookById(Long id) {
+        return bookRepository.getById(id);
     }
 }
