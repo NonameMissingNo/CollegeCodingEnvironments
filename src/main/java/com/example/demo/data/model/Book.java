@@ -1,9 +1,8 @@
 package com.example.demo.data.model;
-
 import java.util.Objects;
 
 /**
- * Model class for songs.
+ * Model class for books.
  */
 public class Book {
 
@@ -54,8 +53,8 @@ public class Book {
         return writer;
     }
 
-    public void setArtist(String artist) {
-        this.writer = artist;
+    public void setWriter(String writer) {
+        this.writer = writer;
     }
 
     public Type getType() {
@@ -86,7 +85,7 @@ public class Book {
         return language;
     }
 
-    public void setLanguage(String genre) {
+    public void setLanguage(String language) {
         this.language = language;
     }
 
@@ -131,7 +130,7 @@ public class Book {
         if (!Objects.equals(title, book.title)) {
             return false;
         }
-        if (!Objects.equals(writer, book.type)) {
+        if (!Objects.equals(writer, book.writer)) {
             return false;
         }
         if (!Objects.equals(type, book.type)) {

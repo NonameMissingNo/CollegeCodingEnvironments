@@ -1,7 +1,7 @@
 package com.example.demo.data.model;
 
 /**
- * Enum for music genre selection.
+ * Enum for book type selection.
  */
 public enum Type {
     Novel,
