@@ -41,17 +41,36 @@
                 </div>
                 <div class="form-group">
                     <label for="type">Type</label>
-                    <input type="text"
+                    <select
                            id="type"
                            th:name="type"
-                           class="form-control"/>
+                           class="form-control">
+                        <option></option>
+                        <option>Novel</option>
+                        <option>Light_novel</option>
+                        <option>Graphic_novel</option>
+                        <option>Poem</option>
+                        <option>Haiku</option>
+                        <option>Novella</option>
+                        <option>Folksong</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="genre">Genre</label>
-                    <input type="text"
+                    <select
                            id="genre"
                            th:name="genre"
-                           class="form-control"/>
+                           class="form-control">
+                        <option></option>
+                        <option>Fiction</option>
+                        <option>Novel</option>
+                        <option>Narrative</option>
+                        <option>Scifi</option>
+                        <option>Mystery</option>
+                        <option>Fantasy</option>
+                        <option>Romance</option>
+                        <option>Non_Fiction</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="publisher">Publisher</label>
