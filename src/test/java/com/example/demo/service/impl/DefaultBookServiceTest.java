@@ -10,7 +10,9 @@ import java.util.Optional;
 
 import com.example.demo.data.model.Book;
 import com.example.demo.data.model.Type;
+import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsNull;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -28,9 +30,9 @@ class DefaultBookServiceTest {
     private static final Long DUMMY_BOOK_ID = 1L;
     private static final Book DUMMY_BOOK = new Book(DUMMY_BOOK_ID, "title", "writer", Type.Folksong, Genre.Fantasy, "publish", "english", "isbn", "1999", 0);
 
+
     @Mock
     private Repository<Book, Long> bookRepository;
-
     private BookService underTest;
 
     @BeforeEach
@@ -80,20 +82,32 @@ class DefaultBookServiceTest {
         verify(bookRepository).getAll();
         verifyNoMoreInteractions(bookRepository);
     }
-
     @Test
-    void updateBook() {
-        given(bookRepository.getById(DUMMY_BOOK_ID)).willReturn(Optional.of(DUMMY_BOOK));
-        Optional<Book> book = underTest.retrieveBookById(DUMMY_BOOK_ID);
-        DUMMY_BOOK.setISBN("Something");
-        Book bookedited = underTest.updateBook(DUMMY_BOOK);
-        verify(bookedited.getISBN().equals("Something"));
+    void DeleteBookById() {
+
+        when(bookRepository.getById(DUMMY_BOOK_ID)).thenReturn(Optional.of(DUMMY_BOOK)).thenReturn(null);
+        // When
+        final Optional<Book> actual = underTest.retrieveBookById(DUMMY_BOOK_ID);
+        underTest.deleteBookById((DUMMY_BOOK_ID));
+        assertThat(underTest.retrieveBookById(DUMMY_BOOK_ID), new IsNull());
+        // Then
+        verify(bookRepository, times(2)).getById(DUMMY_BOOK_ID);
+        verify(bookRepository).deleteById(DUMMY_BOOK_ID);
+        verifyNoMoreInteractions(bookRepository);
     }
-
     @Test
-    void deleteBookById() {
+    void UpdateBook() {
         given(bookRepository.getById(DUMMY_BOOK_ID)).willReturn(Optional.of(DUMMY_BOOK));
-        underTest.deleteBookById(DUMMY_BOOK_ID);
-        verify(DUMMY_BOOK.equals(null));
+        given(bookRepository.update(DUMMY_BOOK)).willReturn(new Book(DUMMY_BOOK_ID, "title", "writer", Type.Folksong, Genre.Fantasy, "publish", "english", "test", "1999", 0));
+        // When
+        final Book actual = underTest.retrieveBookById(DUMMY_BOOK_ID).get();
+        actual.setISBN("test");
+        Book value = underTest.updateBook(actual);
+        // Then
+        assertThat(underTest.retrieveBookById(DUMMY_BOOK_ID).get().getISBN(), equalTo("test"));
+        Assertions.assertEquals(actual, value);
+        verify(bookRepository, times(2)).getById(DUMMY_BOOK_ID);
+        verify(bookRepository).update(DUMMY_BOOK);
+        verifyNoMoreInteractions(bookRepository);
     }
 }
