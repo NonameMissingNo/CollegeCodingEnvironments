@@ -85,7 +85,7 @@ class DefaultBookServiceTest {
         given(bookRepository.getById(DUMMY_BOOK_ID));
         DUMMY_BOOK.setISBN("Something");
         Book book = underTest.updateBook(DUMMY_BOOK);
-        verify(book.getISBN() == "Something");
+        verify(book.getISBN().equals("Something"));
     }
 
     @Test
