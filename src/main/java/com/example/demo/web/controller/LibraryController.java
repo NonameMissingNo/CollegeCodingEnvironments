@@ -38,9 +38,9 @@ public class LibraryController {
      */
     @GetMapping("/{id}")
     public String getBookById(Model model, @PathVariable Long id) {
-        Optional<Book> optionalSong = bookService.retrieveBookById(id);
-        return optionalSong.map(song -> {
-            model.addAttribute("book", song);
+        Optional<Book> optionalBook = bookService.retrieveBookById(id);
+        return optionalBook.map(book -> {
+            model.addAttribute("book", bppl);
             return "library/edit";
         }).orElseGet(() -> {
             model.addAttribute("requestUri", "library/" + id);
@@ -56,10 +56,15 @@ public class LibraryController {
      */
     @GetMapping
     public String getAllBooks(Model model) {
-        List<Book> allSongs = bookService.retrieveAllBooks();
-        model.addAttribute("books", allSongs);
+        List<Book> allBooks = bookService.retrieveAllBooks();
+        model.addAttribute("books", allBooks);
         return "library/list";
     }
+
+    /**
+     * Opens the creation page.
+     *
+     */
     @GetMapping("/create")
     public String createBook() {
         return "library/create";
@@ -110,11 +115,19 @@ public class LibraryController {
         model.addAttribute("books", allBooks);
         return "library/list";
     }
+
+    /**
+     * Brings you to the rating screen
+     *
+     * @param model the model object to store attributes
+     * @param id the id of the book to delete
+     * @return the book that you are rating
+     */
     @GetMapping("/{id}/rating")
     public String rateBookById(Model model, @PathVariable Long id) {
-        Optional<Book> optionalSong = bookService.retrieveBookById(id);
-        return optionalSong.map(song -> {
-            model.addAttribute("book", song);
+        Optional<Book> optionalBook = bookService.retrieveBookById(id);
+        return optionalBook.map(book -> {
+            model.addAttribute("book", book);
             return "library/rating";
         }).orElseGet(() -> {
             model.addAttribute("requestUri", "library/" + id);
