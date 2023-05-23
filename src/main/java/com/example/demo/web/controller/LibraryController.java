@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.service.BookService;
 
 /**
- * Controller for the music catalog.
+ * Controller for the library.
  */
 @Controller
 @RequestMapping("/library")
@@ -86,7 +86,7 @@ public class LibraryController {
     }
 
     /**
-     * Updates an existing song.
+     * Updates an existing book.
      * Also navigates back to the editor screen.
      *
      * @param model the model object to store attributes
@@ -101,8 +101,8 @@ public class LibraryController {
     }
 
     /**
-     * Deletes a song by ID.
-     * Also navigates back to the song list screen.
+     * Deletes a book by ID.
+     * Also navigates back to the book list screen.
      *
      * @param model the model object to store attributes
      * @param id the id of the book to delete
