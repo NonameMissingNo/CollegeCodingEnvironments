@@ -82,7 +82,7 @@ class DefaultBookServiceTest {
 
     @Test
     void updateBook() {
-        given(bookRepository.getById(DUMMY_BOOK_ID));
+        given(bookRepository.getById(DUMMY_BOOK_ID)).willReturn(Optional.of(DUMMY_BOOK));
         DUMMY_BOOK.setISBN("Something");
         Book book = underTest.updateBook(DUMMY_BOOK);
         verify(book.getISBN().equals("Something"));
@@ -90,7 +90,7 @@ class DefaultBookServiceTest {
 
     @Test
     void deleteBookById() {
-        given(bookRepository.getById(DUMMY_BOOK_ID));
+        given(bookRepository.getById(DUMMY_BOOK_ID)).willReturn(Optional.of(DUMMY_BOOK));
         underTest.deleteBookById(DUMMY_BOOK_ID);
         assertThat(DUMMY_BOOK, null);
     }
