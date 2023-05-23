@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import com.example.demo.data.model.Book;
 import com.example.demo.data.model.Type;
+import org.hamcrest.core.IsNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -83,15 +84,16 @@ class DefaultBookServiceTest {
     @Test
     void updateBook() {
         given(bookRepository.getById(DUMMY_BOOK_ID)).willReturn(Optional.of(DUMMY_BOOK));
+        Optional<Book> book = underTest.retrieveBookById(DUMMY_BOOK_ID);
         DUMMY_BOOK.setISBN("Something");
-        Book book = underTest.updateBook(DUMMY_BOOK);
-        verify(book.getISBN().equals("Something"));
+        Book bookedited = underTest.updateBook(DUMMY_BOOK);
+        verify(bookedited.getISBN().equals("Something"));
     }
 
     @Test
     void deleteBookById() {
         given(bookRepository.getById(DUMMY_BOOK_ID)).willReturn(Optional.of(DUMMY_BOOK));
         underTest.deleteBookById(DUMMY_BOOK_ID);
-        assertThat(DUMMY_BOOK, null);
+        verify(DUMMY_BOOK.equals(null));
     }
 }
