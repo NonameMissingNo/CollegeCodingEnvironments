@@ -40,7 +40,7 @@ public class LibraryController {
     public String getBookById(Model model, @PathVariable Long id) {
         Optional<Book> optionalBook = bookService.retrieveBookById(id);
         return optionalBook.map(book -> {
-            model.addAttribute("book", bppl);
+            model.addAttribute("book", book);
             return "library/edit";
         }).orElseGet(() -> {
             model.addAttribute("requestUri", "library/" + id);
