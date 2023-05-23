@@ -61,7 +61,7 @@ public class LibraryRestController {
      * @return the created song object
      */
     @PostMapping
-    public Book createSong(@RequestBody Book song) {
+    public Book createBook(@RequestBody Book song) {
         return bookService.createBook(song);
     }
 
@@ -72,7 +72,7 @@ public class LibraryRestController {
      * @return the updated song object
      */
     @PutMapping
-    public Book updateSong(@RequestBody Book song) {
+    public Book updateBook(@RequestBody Book song) {
         return bookService.updateBook(song);
     }
 
@@ -82,7 +82,7 @@ public class LibraryRestController {
      * @param id the id of the song to delete
      */
     @DeleteMapping("/{id}")
-    public void deleteSongById(@PathVariable Long id) {
+    public void deleteBookById(@PathVariable Long id) {
         bookService.deleteBookById(id);
     }
 }
