@@ -117,7 +117,7 @@ public class LibraryController {
     }
 
     /**
-     * Brings you to the rating screen
+     * Brings you to the rating screen.
      *
      * @param model the model object to store attributes
      * @param id the id of the book to delete
