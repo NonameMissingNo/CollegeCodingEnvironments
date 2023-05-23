@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.service.BookService;
 
 /**
- * A REST controller for managing songs in the music catalog.
+ * A REST controller for managing books in the library.
  */
 @RestController
 @RequestMapping("/api/v1/song")
@@ -32,10 +32,10 @@ public class LibraryRestController {
     }
 
     /**
-     * Returns a song with the given id.
+     * Returns a book with the given id.
      *
-     * @param id the id of the song to retrieve
-     * @return the song object
+     * @param id the id of the book to retrieve
+     * @return the book object
      */
     @GetMapping("/{id}")
     public ResponseEntity<Book> getSongById(@PathVariable Long id) {
@@ -45,9 +45,9 @@ public class LibraryRestController {
     }
 
     /**
-     * Returns a list of all the songs in the catalog.
+     * Returns a list of all the books in the library.
      *
-     * @return the list of songs
+     * @return the list of books
      */
     @GetMapping
     public List<Book> getAllBooks() {
@@ -55,31 +55,31 @@ public class LibraryRestController {
     }
 
     /**
-     * Creates a new song and returns it.
+     * Creates a new book and returns it.
      *
-     * @param song the song object to create
-     * @return the created song object
+     * @param book the book object to create
+     * @return the created book object
      */
     @PostMapping
-    public Book createBook(@RequestBody Book song) {
-        return bookService.createBook(song);
+    public Book createBook(@RequestBody Book book) {
+        return bookService.createBook(book);
     }
 
     /**
-     * Updates an existing song and returns it.
+     * Updates an existing book and returns it.
      *
-     * @param song the song object to update
-     * @return the updated song object
+     * @param book the book object to update
+     * @return the updated book object
      */
     @PutMapping
-    public Book updateBook(@RequestBody Book song) {
-        return bookService.updateBook(song);
+    public Book updateBook(@RequestBody Book book) {
+        return bookService.updateBook(book);
     }
 
     /**
-     * Deletes a song by its id.
+     * Deletes a book by its id.
      *
-     * @param id the id of the song to delete
+     * @param id the id of the book to delete
      */
     @DeleteMapping("/{id}")
     public void deleteBookById(@PathVariable Long id) {
