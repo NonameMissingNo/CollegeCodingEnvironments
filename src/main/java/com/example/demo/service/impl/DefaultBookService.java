@@ -47,9 +47,4 @@ public class DefaultBookService implements BookService {
     public void deleteBookById(Long id) {
         bookRepository.deleteById(id);
     }
-
-    @Override
-    public Optional<Book> rateBookById(Long id) {
-        return bookRepository.getById(id);
-    }
 }

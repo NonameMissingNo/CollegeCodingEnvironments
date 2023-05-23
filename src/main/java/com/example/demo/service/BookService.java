@@ -48,6 +48,4 @@ public interface BookService {
      * @param id the id of the book to delete
      */
     void deleteBookById(Long id);
-
-    Optional<Book> rateBookById(Long id);
 }
