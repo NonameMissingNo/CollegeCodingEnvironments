@@ -21,7 +21,7 @@ import com.example.demo.service.BookService;
  * A REST controller for managing books in the library.
  */
 @RestController
-@RequestMapping("/api/v1/song")
+@RequestMapping("/api/v1/book")
 public class LibraryRestController {
 
     private final BookService bookService;
